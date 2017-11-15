@@ -40,17 +40,20 @@ public class PciPassThroughRequestTransformer
     private static final String PCI_BUS_DEVICE_ID     = "0000:02:00.0";
     private static final String VCENTER_CUSTOMER_TYPE = "VCENTER-CUSTOMER";
 
-    private final DataServiceRepository repository;
+    private final DataServiceRepository   repository;
+    private final ComponentIdsTransformer componentIdsTransformer;
 
-    public PciPassThroughRequestTransformer(final DataServiceRepository repository)
+    public PciPassThroughRequestTransformer(final DataServiceRepository repository, final ComponentIdsTransformer componentIdsTransformer)
     {
         this.repository = repository;
+        this.componentIdsTransformer = componentIdsTransformer;
     }
 
     public EnablePCIPassthroughRequestMessage buildEnablePciPassThroughRequest(final DelegateExecution delegateExecution)
     {
         final String hostname = (String) delegateExecution.getVariable(HOSTNAME);
-        final ComponentEndpointIds componentEndpointIds = getComponentEndpointIds();
+        final ComponentEndpointIds componentEndpointIds = componentIdsTransformer
+                .getVCenterComponentEndpointIdsByEndpointType(VCENTER_CUSTOMER_TYPE);
         final List<PciDevice> pciDeviceList = getPciDeviceList();
         final String hostPciDeviceId = filterDellPercPciDeviceId(pciDeviceList);
 
@@ -60,7 +63,8 @@ public class PciPassThroughRequestTransformer
     public UpdatePCIPassthruSVMRequestMessage buildUpdatePciPassThroughRequest(final DelegateExecution delegateExecution)
     {
         final String hostname = (String) delegateExecution.getVariable(HOSTNAME);
-        final ComponentEndpointIds componentEndpointIds = getComponentEndpointIds();
+        final ComponentEndpointIds componentEndpointIds = componentIdsTransformer
+                .getVCenterComponentEndpointIdsByEndpointType(VCENTER_CUSTOMER_TYPE);
         final String hostPciDeviceId = (String) delegateExecution.getVariable(HOST_PCI_DEVICE_ID);
         final String virtualMachineName = (String) delegateExecution.getVariable(VIRTUAL_MACHINE_NAME);
 
@@ -79,18 +83,6 @@ public class PciPassThroughRequestTransformer
                 new com.dell.cpsd.virtualization.capabilities.api.ComponentEndpointIds(componentEndpointIds.getComponentUuid(),
                         componentEndpointIds.getEndpointUuid(), componentEndpointIds.getCredentialUuid()));
         return requestMessage;
-    }
-
-    private ComponentEndpointIds getComponentEndpointIds()
-    {
-        final ComponentEndpointIds componentEndpointIds = repository.getVCenterComponentEndpointIdsByEndpointType(VCENTER_CUSTOMER_TYPE);
-
-        if (componentEndpointIds == null)
-        {
-            throw new IllegalStateException("No VCenter Customer components found");
-        }
-
-        return componentEndpointIds;
     }
 
     private List<PciDevice> getPciDeviceList()

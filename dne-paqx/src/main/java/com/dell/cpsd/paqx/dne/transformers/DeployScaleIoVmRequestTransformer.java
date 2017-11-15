@@ -63,16 +63,19 @@ public class DeployScaleIoVmRequestTransformer
     private static final String  DOT_STRING                    = " ";
     private static final String  HYPHEN_DELIMITER              = ",";
 
-    private final DataServiceRepository repository;
+    private final DataServiceRepository   repository;
+    private final ComponentIdsTransformer componentIdsTransformer;
 
-    public DeployScaleIoVmRequestTransformer(final DataServiceRepository repository)
+    public DeployScaleIoVmRequestTransformer(final DataServiceRepository repository, final ComponentIdsTransformer componentIdsTransformer)
     {
         this.repository = repository;
+        this.componentIdsTransformer = componentIdsTransformer;
     }
 
     public DeployVMFromTemplateRequestMessage buildDeployVmRequest(final DelegateExecution delegateExecution)
     {
-        final ComponentEndpointIds componentEndpointIds = getComponentEndpointIds();
+        final ComponentEndpointIds componentEndpointIds = componentIdsTransformer
+                .getVCenterComponentEndpointIdsByEndpointType(VCENTER_CUSTOMER_TYPE);
         final String hostname = (String) delegateExecution.getVariable(HOSTNAME);
         final NodeDetail nodeDetail = (NodeDetail) delegateExecution.getVariable(NODE_DETAIL);
         final String clusterName = nodeDetail.getClusterName();
@@ -240,17 +243,5 @@ public class DeployScaleIoVmRequestTransformer
             throw new IllegalStateException("DataCenter name is null");
         }
         return dataCenterName;
-    }
-
-    private ComponentEndpointIds getComponentEndpointIds()
-    {
-        final ComponentEndpointIds componentEndpointIds = repository.getVCenterComponentEndpointIdsByEndpointType(VCENTER_CUSTOMER_TYPE);
-
-        if (componentEndpointIds == null)
-        {
-            throw new IllegalStateException("No VCenter Customer components found");
-        }
-
-        return componentEndpointIds;
     }
 }
