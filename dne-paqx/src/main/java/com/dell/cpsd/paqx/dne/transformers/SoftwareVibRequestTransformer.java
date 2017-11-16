@@ -185,11 +185,15 @@ public class SoftwareVibRequestTransformer
     private void getMdmScaleIoDataIps(final ScaleIOData scaleIOData, final Set<String> mdmIpList)
     {
         final ScaleIOMdmCluster scaleIOMdmCluster = scaleIOData.getMdmCluster();
-        if (scaleIOMdmCluster != null)
+
+        if (scaleIOMdmCluster == null)
         {
-            getMasterMdmDataIps(mdmIpList, scaleIOMdmCluster);
-            getSlaveMdmsDataIps(mdmIpList, scaleIOMdmCluster);
+            LOGGER.error("ScaleIO MDM Cluster is null");
+            throw new IllegalStateException("ScaleIO MDM Cluster is null");
         }
+
+        getMasterMdmDataIps(mdmIpList, scaleIOMdmCluster);
+        getSlaveMdmsDataIps(mdmIpList, scaleIOMdmCluster);
     }
 
     private void getSlaveMdmsDataIps(final Set<String> mdmIpList, final ScaleIOMdmCluster scaleIOMdmCluster)

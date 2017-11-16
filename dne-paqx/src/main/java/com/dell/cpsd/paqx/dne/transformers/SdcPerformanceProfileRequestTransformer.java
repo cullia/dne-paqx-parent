@@ -6,13 +6,13 @@
 package com.dell.cpsd.paqx.dne.transformers;
 
 import com.dell.cpsd.paqx.dne.service.delegates.model.NodeDetail;
-import com.dell.cpsd.paqx.dne.service.delegates.utils.DelegateConstants;
 import com.dell.cpsd.paqx.dne.service.model.ComponentEndpointIds;
 import com.dell.cpsd.storage.capabilities.api.PerformanceProfileRequest;
 import com.dell.cpsd.storage.capabilities.api.SioSdcUpdatePerformanceProfileRequestMessage;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.springframework.stereotype.Component;
 
+import static com.dell.cpsd.paqx.dne.service.delegates.utils.DelegateConstants.IOCTL_INI_GUI_STR;
 import static com.dell.cpsd.paqx.dne.service.delegates.utils.DelegateConstants.NODE_DETAIL;
 
 /**
@@ -44,7 +44,7 @@ public class SdcPerformanceProfileRequestTransformer
     {
         final ComponentEndpointIds componentEndpointIds = componentIdsTransformer.getComponentEndpointIdsByComponentType(COMPONENT_TYPE);
         final NodeDetail nodeDetail = (NodeDetail) delegateExecution.getVariable(NODE_DETAIL);
-        final String sdcGUID = (String) delegateExecution.getVariable(DelegateConstants.IOCTL_INI_GUI_STR);
+        final String sdcGUID = (String) delegateExecution.getVariable(IOCTL_INI_GUI_STR);
         final String scaleIoSdcIpAddress = nodeDetail.getEsxiManagementIpAddress();
 
         return getRequestMessage(componentEndpointIds, sdcGUID, scaleIoSdcIpAddress);

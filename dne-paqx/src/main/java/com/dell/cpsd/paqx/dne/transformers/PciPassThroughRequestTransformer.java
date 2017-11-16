@@ -13,6 +13,7 @@ import com.dell.cpsd.virtualization.capabilities.api.EnablePCIPassthroughRequest
 import com.dell.cpsd.virtualization.capabilities.api.UpdatePCIPassthruSVMRequestMessage;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Objects;
@@ -91,7 +92,7 @@ public class PciPassThroughRequestTransformer
 
         if (pciDeviceList == null || pciDeviceList.isEmpty())
         {
-            throw new IllegalStateException("PCI Device List is empty");
+            return null;
         }
         return pciDeviceList;
     }
@@ -111,14 +112,18 @@ public class PciPassThroughRequestTransformer
 
     private String filterDellPercPciDeviceId(final List<PciDevice> pciDeviceList) throws IllegalStateException
     {
-        final PciDevice requiredPciDevice = pciDeviceList.stream()
-                .filter(obj -> Objects.nonNull(obj) && obj.getDeviceName().matches(DELL_PCI_REGEX)).findFirst().orElse(null);
-
-        if (requiredPciDevice == null)
+        if (!CollectionUtils.isEmpty(pciDeviceList))
         {
-            return PCI_BUS_DEVICE_ID;
-        }
+            final PciDevice requiredPciDevice = pciDeviceList.stream()
+                    .filter(obj -> Objects.nonNull(obj) && obj.getDeviceName().matches(DELL_PCI_REGEX)).findFirst().orElse(null);
 
-        return requiredPciDevice.getId();
+            if (requiredPciDevice == null)
+            {
+                return PCI_BUS_DEVICE_ID;
+            }
+
+            return requiredPciDevice.getId();
+        }
+        return PCI_BUS_DEVICE_ID;
     }
 }
