@@ -74,6 +74,8 @@ public interface DataServiceRepository
 
     List<Host> getVCenterHosts() throws NoResultException;
 
+    List<String> getDnsServers();
+
     Host getExistingVCenterHost() throws NoResultException;
 
     List<PortGroup> getPortGroups();

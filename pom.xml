@@ -113,6 +113,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
@@ -121,14 +122,6 @@
                     <exclusion>
                         <groupId>com.dell.cpsd.common.messaging</groupId>
                         <artifactId>common-rabbitmq</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>log4j-over-slf4j</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>logback-classic</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -142,14 +135,6 @@
                     <exclusion>
                         <groupId>com.dell.cpsd.common.messaging</groupId>
                         <artifactId>common-rabbitmq</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>log4j-over-slf4j</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>logback-classic</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
