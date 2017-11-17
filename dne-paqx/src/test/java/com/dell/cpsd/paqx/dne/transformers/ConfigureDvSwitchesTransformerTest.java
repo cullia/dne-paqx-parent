@@ -21,8 +21,11 @@ import java.util.Map;
 
 import static com.dell.cpsd.paqx.dne.service.delegates.utils.DelegateConstants.HOSTNAME;
 import static com.dell.cpsd.paqx.dne.service.delegates.utils.DelegateConstants.NODE_DETAIL;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -123,5 +126,103 @@ public class ConfigureDvSwitchesTransformerTest
         assertNotNull(addHostToDvSwitchRequestMessage.getDvSwitchConfigList());
         assertNotNull(addHostToDvSwitchRequestMessage.getPNicNames());
         assertEquals(this.hostName, addHostToDvSwitchRequestMessage.getHostname());
+    }
+
+    @Test
+    public void testBuildAddHostToDvSwitchRequestGetDvSwitchNamesMapException() throws Exception
+    {
+        this.verifyDvSwitchNameException(null, "DV Switch Names are null");
+    }
+
+    @Test
+    public void testBuildAddHostToDvSwitchRequestGetDvSwitchManagementNameException() throws Exception
+    {
+        this.dvSwitchNames.remove("dvswitch0");
+        this.verifyDvSwitchNameException(this.dvSwitchNames, "DVSwitch0 name is null or empty");
+    }
+
+    @Test
+    public void testBuildAddHostToDvSwitchRequestGetDvSwitchScaleIoData1NameException() throws Exception
+    {
+        this.dvSwitchNames.remove("dvswitch1");
+        this.verifyDvSwitchNameException(this.dvSwitchNames, "DVSwitch1 name is null or empty");
+    }
+
+    @Test
+    public void testBuildAddHostToDvSwitchRequestGetDvSwitchScaleIoData2NameException() throws Exception
+    {
+        this.dvSwitchNames.remove("dvswitch2");
+        this.verifyDvSwitchNameException(this.dvSwitchNames, "DVSwitch2 name is null or empty");
+    }
+
+    @Test
+    public void testBuildAddHostToDvSwitchRequestGetDvPortGroupsMapException() throws Exception
+    {
+        this.verifyDvPortGroupNameException(null, "DV Port Group Names are null");
+    }
+
+    @Test
+    public void testBuildAddHostToDvSwitchRequestGetEsxiManagementPortGroupNameException() throws Exception
+    {
+        this.dvPortGroupNames.remove("esx-mgmt");
+        this.verifyDvPortGroupNameException(this.dvPortGroupNames, "DV Port Group name for ESXI-MGMT is null");
+    }
+
+    @Test
+    public void testBuildAddHostToDvSwitchRequestGetVMotionPortGroupNameException() throws Exception
+    {
+        this.dvPortGroupNames.remove("vmotion");
+        this.verifyDvPortGroupNameException(this.dvPortGroupNames, "DV Port Group name for VMOTION is null");
+    }
+
+    @Test
+    public void testBuildAddHostToDvSwitchRequestGetScaleIoData1PortGroupNameException() throws Exception
+    {
+        this.dvPortGroupNames.remove("sio-data1");
+        this.verifyDvPortGroupNameException(this.dvPortGroupNames, "DV Port Group name for ScaleIO Data1 is null");
+    }
+
+    @Test
+    public void testBuildAddHostToDvSwitchRequestGetScaleIoData2PortGroupNameException() throws Exception
+    {
+        this.dvPortGroupNames.remove("sio-data2");
+        this.verifyDvPortGroupNameException(this.dvPortGroupNames, "DV Port Group name for ScaleIO Data2 is null");
+    }
+
+    private void verifyDvSwitchNameException(Map<String, String> dvSwitchNamesMap, String expectedExceptionMsg)
+    {
+        when(this.delegateExecution.getVariable(HOSTNAME)).thenReturn(this.hostName);
+        when(this.delegateExecution.getVariable(NODE_DETAIL)).thenReturn(this.nodeDetail);
+        when(this.componentIdsTransformer.getVCenterComponentEndpointIdsByEndpointType(anyString())).thenReturn(this.componentEndpointIds);
+        when(this.dataServiceRepository.getDvSwitchNames()).thenReturn(dvSwitchNamesMap);
+
+        try
+        {
+            this.transformer.buildAddHostToDvSwitchRequest(this.delegateExecution);
+            fail("Expected Exception to be thrown but was not");
+        }
+        catch (IllegalStateException ex)
+        {
+            assertThat(ex.getMessage(), containsString(expectedExceptionMsg));
+        }
+    }
+
+    private void verifyDvPortGroupNameException(Map<String, String> dvPortGroupNamesMap, String expectedExceptionMsg)
+    {
+        when(this.delegateExecution.getVariable(HOSTNAME)).thenReturn(this.hostName);
+        when(this.delegateExecution.getVariable(NODE_DETAIL)).thenReturn(this.nodeDetail);
+        when(this.componentIdsTransformer.getVCenterComponentEndpointIdsByEndpointType(anyString())).thenReturn(this.componentEndpointIds);
+        when(this.dataServiceRepository.getDvSwitchNames()).thenReturn(this.dvSwitchNames);
+        when(this.dataServiceRepository.getDvPortGroupNames(this.dvSwitchNames)).thenReturn(dvPortGroupNamesMap);
+
+        try
+        {
+            this.transformer.buildAddHostToDvSwitchRequest(this.delegateExecution);
+            fail("Expected Exception to be thrown but was not");
+        }
+        catch (IllegalStateException ex)
+        {
+            assertThat(ex.getMessage(), containsString(expectedExceptionMsg));
+        }
     }
 }
