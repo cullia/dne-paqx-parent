@@ -88,11 +88,11 @@ public class ConfigureDvSwitchesTransformerTest
         this.nodeDetail.setScaleIoSvmManagementIpAddress("1.1.1.9");
         this.nodeDetail.setScaleIoSvmManagementGatewayAddress("1.1.1.10");
         this.nodeDetail.setScaleIoSvmManagementSubnetMask("255.255.255.0");
-        this.nodeDetail.setHostname(this.nodeDetail.getEsxiManagementHostname());
+        this.nodeDetail.setEsxiManagementHostname(this.nodeDetail.getEsxiManagementHostname());
         this.nodeDetail.setClusterName("cluster-1");
         this.nodeDetail.setvMotionManagementIpAddress("1.1.1.8");
         this.nodeDetail.setvMotionManagementSubnetMask("255.255.255.0");
-        this.nodeDetail.setProtectionDomain("protection-domain-1");
+        this.nodeDetail.setProtectionDomainName("protection-domain-1");
 
         this.dvSwitchNames = new HashMap<>();
         this.dvSwitchNames.put("dvswitch0", "dvswitch0");
