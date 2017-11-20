@@ -54,8 +54,8 @@ public class DeployScaleIoVmRequestTransformer
     private static final int     START_ORDER                   = 1;
     private static final boolean poweredOn                     = false;
     private static final boolean isTemplate                    = false;
-    private static final String  DOT_STRING                    = ".";
-    private static final String  HYPHEN_DELIMITER              = "-";
+    private static final char    DOT_STRING                    = '.';
+    private static final char    HYPHEN_DELIMITER              = '-';
 
     private final DataServiceRepository   repository;
     private final ComponentIdsTransformer componentIdsTransformer;

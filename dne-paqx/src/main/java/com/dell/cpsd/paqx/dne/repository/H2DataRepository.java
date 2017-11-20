@@ -501,7 +501,7 @@ public class H2DataRepository implements DataServiceRepository
     }
 
     @Override
-    public List<Host> getVCenterHosts() throws NoResultException
+    public List<Host> getVCenterHosts()
     {
         final TypedQuery<Host> query = entityManager.createQuery("SELECT h FROM Host as h", Host.class);
         return query.getResultList();
@@ -510,14 +510,14 @@ public class H2DataRepository implements DataServiceRepository
     @Override
     public List<String> getDnsServers()
     {
+        final Set<String> dnsServers = new HashSet<>();
+
         final List<Host> vCenterHosts = getVCenterHosts();
 
         if (CollectionUtils.isEmpty(vCenterHosts))
         {
             return new ArrayList<>();
         }
-
-        final Set<String> dnsServers = new HashSet<>();
 
         vCenterHosts.stream().filter(Objects::nonNull)
                 .forEach(hs -> hs.getHostDnsConfig().getDnsConfigIPs().stream().filter(Objects::nonNull).forEach(dnsServers::add));

@@ -188,8 +188,9 @@ public class SoftwareVibRequestTransformer
 
         if (scaleIOMdmCluster == null)
         {
-            LOGGER.error("ScaleIO MDM Cluster is null");
-            throw new IllegalStateException("ScaleIO MDM Cluster is null");
+            final String error = "ScaleIO MDM Cluster is null";
+            LOGGER.error(error);
+            throw new IllegalStateException(error);
         }
 
         getMasterMdmDataIps(mdmIpList, scaleIOMdmCluster);

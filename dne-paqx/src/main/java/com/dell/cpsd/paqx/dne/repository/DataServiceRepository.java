@@ -72,7 +72,7 @@ public interface DataServiceRepository
 
     Host getVCenterHost(String hostName) throws NoResultException;
 
-    List<Host> getVCenterHosts() throws NoResultException;
+    List<Host> getVCenterHosts();
 
     List<String> getDnsServers();
 
