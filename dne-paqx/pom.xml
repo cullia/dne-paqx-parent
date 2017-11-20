@@ -41,122 +41,32 @@
     </scm>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-commons</artifactId>
-            <version>1.1.9.RELEASE</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter</artifactId>
-            <version>1.1.2.RELEASE</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-consul</artifactId>
-            <version>1.1.2.RELEASE</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-consul-config</artifactId>
-            <version>1.1.2.RELEASE</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
-            <version>1.1.2.RELEASE</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-            <version>1.5.1.RELEASE</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
 
         <dependency>
             <groupId>com.dell.cpsd</groupId>
             <artifactId>common-rabbitmq</artifactId>
             <version>2.1.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>18.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>com.dell.cpsd</groupId>
             <artifactId>common-client</artifactId>
             <version>2.2.0-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
-            <groupId>com.dell.cpsd.hdp.capability.registry</groupId>
+            <groupId>com.dell.cpsd</groupId>
             <artifactId>hdp-capability-registry-client</artifactId>
-            <version>0.3-SNAPSHOT</version>
+            <version>1.0.1-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
+                    <groupId>com.dell.cpsd</groupId>
                     <artifactId>common-rabbitmq</artifactId>
                 </exclusion>
             </exclusions>
@@ -168,7 +78,7 @@
             <version>1.1.0-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
+                    <groupId>com.dell.cpsd</groupId>
                     <artifactId>common-rabbitmq</artifactId>
                 </exclusion>
             </exclusions>
@@ -182,7 +92,7 @@
             <classifier>schemas</classifier>
             <exclusions>
                 <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
+                    <groupId>com.dell.cpsd</groupId>
                     <artifactId>common-rabbitmq</artifactId>
                 </exclusion>
             </exclusions>
@@ -196,7 +106,7 @@
             <version>1.1.0-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
+                    <groupId>com.dell.cpsd</groupId>
                     <artifactId>common-rabbitmq</artifactId>
                 </exclusion>
             </exclusions>
@@ -210,7 +120,7 @@
             <version>1.0.0-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
+                    <groupId>com.dell.cpsd</groupId>
                     <artifactId>common-rabbitmq</artifactId>
                 </exclusion>
             </exclusions>
@@ -220,119 +130,66 @@
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
             <version>3.2.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
             <version>2.3.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>3.5</version>
         </dependency>
 
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>2.5</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>4.3.8.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>4.3.8.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>2.8.5</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>2.8.5</version>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>1.7.21</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-oxm</artifactId>
             <version>${spring.oxm.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>com.dell.cpsd.sdk</groupId>
             <artifactId>SDKClient-driver</artifactId>
-            <version>1.01-SNAPSHOT</version>
+            <version>1.02-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
@@ -374,7 +231,7 @@
             <scope>test</scope>
             <exclusions>
                 <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
+                    <groupId>com.dell.cpsd</groupId>
                     <artifactId>common-rabbitmq</artifactId>
                 </exclusion>
             </exclusions>
@@ -388,7 +245,7 @@
             <type>test-jar</type>
             <exclusions>
                 <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
+                    <groupId>com.dell.cpsd</groupId>
                     <artifactId>common-rabbitmq</artifactId>
                 </exclusion>
             </exclusions>
@@ -398,95 +255,59 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>4.12</version>
         </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>2.8.9</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>4.3.8.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
             <version>${spring-boot.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.0.11.Final</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>1.1.0.Final</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>4.3.8.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>5.0.11.Final</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>1.0.0.Final</version>
         </dependency>
 
         <!-- H2 DB -->
@@ -494,42 +315,21 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${dbh2.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
+
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
+
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
     </dependencies>
@@ -577,6 +377,19 @@
                             <includes>**\/*.jsd</includes>
                         </configuration>
                     </execution>
+
+                    <!--<execution>-->
+                        <!--<phase>generate-sources</phase>-->
+                        <!--<id>unpack-json-schemas-credential-service-api</id>-->
+                        <!--<goals>-->
+                            <!--<goal>unpack-dependencies</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<includeGroupIds>com.dell.cpsd</includeGroupIds>-->
+                            <!--<includeArtifactIds>credential-service-api</includeArtifactIds>-->
+                            <!--<includes>**\/*.jsd</includes>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
                 </executions>
             </plugin>
 
@@ -669,6 +482,33 @@
                             <customRuleFactory>com.dell.cpsd.common.contract.enricher.plugins.jsonschema2pojo.DefaultRuleFactory</customRuleFactory>
                         </configuration>
                     </execution>
+                    <!--<execution>-->
+                        <!--<id>generate-json-type-credential-service-api</id>-->
+                        <!--<phase>generate-resources</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>generate</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<sourceDirectory>${project.build.directory}/dependency/credentials-service-api/schema/json-->
+                            <!--</sourceDirectory>-->
+                            <!--<targetPackage>com.dell.cpsd.credential.model.api-->
+                            <!--</targetPackage>-->
+                            <!--<outputDirectory>${project.build.directory}/generated-sources/credential-service-api</outputDirectory>-->
+                            <!--<removeOldOutput>true</removeOldOutput>-->
+                            <!--<useLongIntegers>true</useLongIntegers>-->
+                            <!--<includeConstructors>true</includeConstructors>-->
+                            <!--<generateBuilders>true</generateBuilders>-->
+                            <!--<includeAdditionalProperties>false</includeAdditionalProperties>-->
+                            <!--<serializable>false</serializable>-->
+                            <!--<useCommonsLang3>true</useCommonsLang3>-->
+                            <!--<includeJsr303Annotations>true</includeJsr303Annotations>-->
+                            <!--<sourceSortOrder>FILES_FIRST</sourceSortOrder>-->
+                            <!--<customAnnotator>com.dell.cpsd.common.contract.enricher.plugins.jsonschema2pojo.MessageAnnotator-->
+                            <!--</customAnnotator>-->
+                            <!--<customRuleFactory>com.dell.cpsd.common.contract.enricher.plugins.jsonschema2pojo.DefaultRuleFactory-->
+                            <!--</customRuleFactory>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
                 </executions>
             </plugin>
 

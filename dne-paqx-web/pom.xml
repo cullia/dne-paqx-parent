@@ -15,6 +15,10 @@
     
     <properties>
         <skipITs>true</skipITs>
+        <spring.boot.version>1.5.1.RELEASE</spring.boot.version>
+        <spring-cloud-starter-version>1.2.1.RELEASE</spring-cloud-starter-version>
+        <spring-cloud-commons-version>1.1.9.RELEASE</spring-cloud-commons-version>
+        <spring-cloud-starter-consul-version>1.2.1.RELEASE</spring-cloud-starter-consul-version>
     </properties>
 
     <licenses>
@@ -43,41 +47,28 @@
         <dependency>
             <groupId>com.dell.cpsd.paqx.dne</groupId>
             <artifactId>dne-paqx</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
+
         <dependency>
             <groupId>com.dell.cpsd.paqx.dne</groupId>
             <artifactId>dne-paqx</artifactId>
             <type>test-jar</type>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
+        <!--Spring boot dependencies-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <version>${spring.boot.version}</version>
             <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                </exclusion>
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
                     <artifactId>logback-classic</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>log4j-over-slf4j</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -85,134 +76,106 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>${spring.boot.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!-- CONSUL DEPENDENCIES -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-commons</artifactId>
+            <version>${spring-cloud-commons-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
+            <version>${spring-cloud-starter-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul</artifactId>
+            <version>${spring-cloud-starter-consul-version}</version>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>com.ecwid.consul</groupId>-->
+                    <!--<artifactId>consul-api</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-consul-config</artifactId>
+            <version>${spring-cloud-starter-consul-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+            <version>${spring-cloud-starter-consul-version}</version>
+        </dependency>
+        <!-- END OF CONSUL DEPENDENCIES -->
+
 
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.6.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>2.6.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-config</artifactId>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.retry</groupId>
             <artifactId>spring-retry</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>1.1.5.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>${spring-boot.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>4.3.8.RELEASE</version>
         </dependency>
+
         <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
             <version>2.0.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
-                    <artifactId>common-rabbitmq</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- Test Dependencies -->
@@ -223,7 +186,7 @@
             <scope>test</scope>
             <exclusions>
                 <exclusion>
-                    <groupId>com.dell.cpsd.common.messaging</groupId>
+                    <groupId>com.dell.cpsd</groupId>
                     <artifactId>common-rabbitmq</artifactId>
                 </exclusion>
             </exclusions>
@@ -246,18 +209,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>

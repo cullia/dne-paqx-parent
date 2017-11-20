@@ -76,9 +76,16 @@ public class VerifyNodesSelected extends BaseWorkflowDelegate
                     if (nodeDetail.getServiceTag().equalsIgnoreCase(discoveredNode.getSerialNumber()))
                     {
                         final List<Host> vCenterHosts = repository.getVCenterHosts();
-                        final Optional<Host> foundHost = vCenterHosts.stream().filter(Objects::nonNull)
-                                .filter(host -> host.getName().contains(nodeDetail.getEsxiManagementHostname()) || host.getName()
-                                        .contains(nodeDetail.getEsxiManagementIpAddress())).findFirst();
+                        final Optional<Host> foundHost = vCenterHosts.stream()
+                                .filter(Objects::nonNull)
+                                .filter(host -> {
+                                    if (host.getName() != null)
+                                    {
+                                        return host.getName().contains(nodeDetail.getEsxiManagementHostname()) ||
+                                                host.getName().contains(nodeDetail.getEsxiManagementIpAddress());
+                                    }
+                                    return false;
+                                }).findFirst();
 
                         if (foundHost.isPresent())
                         {
@@ -87,9 +94,16 @@ public class VerifyNodesSelected extends BaseWorkflowDelegate
                         }
                         else
                         {
-                            final Optional<ScaleIOSDC> foundSdc = repository.getScaleIoData().getSdcList().stream().filter(Objects::nonNull)
-                                    .filter(sdc -> sdc.getName().contains(nodeDetail.getEsxiManagementHostname()) ||
-                                           sdc.getName().contains(nodeDetail.getEsxiManagementIpAddress())).findFirst();
+                            final Optional<ScaleIOSDC> foundSdc = repository.getScaleIoData().getSdcList().stream()
+                                    .filter(Objects::nonNull)
+                                    .filter(sdc -> {
+                                        if(sdc.getName() != null)
+                                        {
+                                            return sdc.getName().contains(nodeDetail.getEsxiManagementHostname()) ||
+                                                    sdc.getName().contains(nodeDetail.getEsxiManagementIpAddress());
+                                        }
+                                        return false;
+                                    }).findFirst();
 
                             if (foundSdc.isPresent())
                             {
@@ -100,8 +114,14 @@ public class VerifyNodesSelected extends BaseWorkflowDelegate
                             {
                                 final Optional<ScaleIOSDS> foundSds = repository.getScaleIoData().getSdsList().stream()
                                         .filter(Objects::nonNull)
-                                        .filter(sds -> sds.getName().contains(nodeDetail.getEsxiManagementHostname())
-                                                || sds.getName().contains(nodeDetail.getEsxiManagementIpAddress()))
+                                        .filter(sds -> {
+                                            if(sds.getName() != null)
+                                            {
+                                                return sds.getName().contains(nodeDetail.getEsxiManagementHostname()) ||
+                                                        sds.getName().contains(nodeDetail.getEsxiManagementIpAddress());
+                                            }
+                                            return false;
+                                        })
                                         .findFirst();
 
                                 if (foundSds.isPresent())
@@ -127,7 +147,7 @@ public class VerifyNodesSelected extends BaseWorkflowDelegate
         }
         catch (Exception e)
         {
-            final String message = "An Unexpected Exception occurred attempting to verify selected Nodes.";
+            final String message = "An unexpected exception occurred attempting to verify selected Nodes.";
             LOGGER.error(message, e);
             updateDelegateStatus(message);
             throw new BpmnError(VERIFY_NODES_SELECTED_FAILED, message);
